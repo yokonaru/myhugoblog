@@ -1,0 +1,13 @@
+baseURL = "/"
+languageCode = "ja"
+title = "naruブログ"
+theme = "PaperMod"
+
+paginate = 10
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
