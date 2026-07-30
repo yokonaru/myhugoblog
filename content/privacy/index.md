@@ -2,6 +2,7 @@
 title: "プライバシーポリシー"
 date: 2026-07-31
 url: "/privacy/"
+draft: false
 ---
 
 当サイトでは、Google AdSense を利用して広告を表示しています。
