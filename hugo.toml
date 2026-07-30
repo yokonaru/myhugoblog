@@ -38,3 +38,9 @@ paginate = 10
     name = "Contact"
     url = "/contact/"
     weight = 4
+
+  [[menu.main]]
+    name = "Privacy"
+    url = "/privacy/"
+    weight = 5
+
