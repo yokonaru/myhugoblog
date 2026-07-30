@@ -16,10 +16,10 @@ paginate = 10
   enabled = true
   title = "naruブログ"
   subtitle = "投資と日常の第一次情報を投稿"
-  imageUrl = "images/profile.jpg"   # プロフィール画像のパス
-  imageWidth = 120
-  imageHeight = 120
-  imageTitle = "プロフィール画像"
+  //imageUrl = "images/profile.jpg"   # プロフィール画像のパス
+  //imageWidth = 120
+  //imageHeight = 120
+  //imageTitle = "プロフィール画像"
 
 [menu]
 
