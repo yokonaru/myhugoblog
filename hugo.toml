@@ -11,7 +11,9 @@ paginate = 10
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-  googleAnalytics = "G-DRS9ZZZ4D3"
+  
+[params.analytics.google]
+  MeasurementId = "G-DRS9ZZZ4D3"
 
 
 [params.profileMode]
