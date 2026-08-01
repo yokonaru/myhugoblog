@@ -12,6 +12,10 @@ paginate = 10
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
 
+[params]
+  googleAnalytics = "G-DRS9ZZZ4D3"
+
+
 [params.profileMode]
   enabled = true
   title = "naruブログ"
