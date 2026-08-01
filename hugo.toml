@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://naru-log.com/"
 languageCode = "ja"
 title = "naruブログ"
 theme = "PaperMod"
