@@ -3,6 +3,9 @@ languageCode = "ja"
 title = "naruブログ"
 theme = "PaperMod"
 
+# GA4 の測定 ID を直接指定
+googleAnalytics = "G-DRS9ZZZ4D3"
+
 paginate = 10
 
 [params]
@@ -11,10 +14,6 @@ paginate = 10
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-  
-[params.analytics.google]
-  MeasurementId = "G-DRS9ZZZ4D3"
-
 
 [params.profileMode]
   enabled = true
