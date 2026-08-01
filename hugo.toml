@@ -11,8 +11,6 @@ paginate = 10
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
-
-[params]
   googleAnalytics = "G-DRS9ZZZ4D3"
 
 
