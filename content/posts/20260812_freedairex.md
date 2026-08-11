@@ -1,6 +1,6 @@
 ---
 title: "ホンダフリードAIREXにして本当によかった理由｜高速7時間の帰省で実感したこと"
-date: 2026-08-12T00:39:00+09:00
+date: 2026-08-12T00:39:00
 publishDate: 2026-08-12T00:00:00
 draft: false
 showToc: true
