@@ -3,7 +3,6 @@ title: "ホンダフリードAIREXにして本当によかった理由｜高速7
 date: 2026-08-12T00:00:00
 publishDate: 2026-08-12T00:00:00
 draft: false
-author: "成平"
 showToc: true
 tocOpen: true
 description: "フリードAIRではなくAIREXを選んだ理由。高速7時間の帰省で自動運転の恩恵を強く実感。リアクーラーが子どもにも大好評。"
