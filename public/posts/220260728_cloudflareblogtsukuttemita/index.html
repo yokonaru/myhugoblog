@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>WordPress以外ならこれ！Cloudflare Pages＋Hugoでつくる最安＆爆速の個人ブログ構成 | naruブログ</title>
+<meta name="keywords" content="">
+<meta name="description" content="ブログを始めようと思ったとき、パッと思い浮かぶのはWordPressやはてなブログ、Bloggerあたりでしょうか。
+でも実は今、「Cloudflare Pages × Hugo」 という構成が、個人ブログの選択肢として非常に優秀です。
+結論から言うと、独自ドメイン代（年額数百円〜千円程度）さえ払えば、サーバー代完全無料で爆速の個人ブログが持てます。
+しかも、ドメイン取得先として優秀なCloudflareならドメイン代も原価（利益乗せなし）の最安値。
+「ブログは書きたいけれど、毎月の固定費は払いたくない…」という人に全力でおすすめしたいこの構成について、実際にWordPressや他のツールと比較しながらまとめてみました。
+
+WordPressの「毎月のサーバー代」が地味に重かった
+以前はWordPressでブログを書いていたのですが、運用していてずっと気になっていたのが毎月発生するサーバー代でした。
+
+レンタルサーバーやVPS代： 月600円〜1,000円（年間約1万円〜）
+独自ドメイン代： 年1,500円〜3,000円
+
+収益化ができているブログなら良いのですが、趣味の記録やちょっとした技術ブログだと「毎月1,000円近く払い続けるのは地味に痛いな…」と感じてしまうんですよね。
+「もっと維持費を抑えて、気楽に続けられる方法はないか？」と探して辿り着いたのが今回の構成でした。
+
+ドメイン代すら最安で済む「Cloudflare Registrar」の存在
+今回ホスティング先として選んだCloudflareですが、実はドメインの購入も行えます。
+これが一般的なドメイン会社と違って「手数料ゼロ・原価販売」なんです。
+
+よくあるドメイン会社の罠
+
+初年度だけ1円で、2年目からの更新料が跳ね上がる
+謎のオプションでいつの間にか料金が加算されている
+
+
+Cloudflareはずっと原価のまま更新できるので、長く運用すればするほど差が出ます。
+「原価の最安ドメイン」×「無料のCloudflare Pages」＝「ほぼ完全無料のブログ」
+この組み合わせが成立した瞬間、個人ブログをやってみようという気になりました。
+
+他の無料ブログ（はてな・Blogger）じゃダメなの？
+「無料なら、はてなブログやBloggerでいいのでは？」と思うかもしれません。もちろん手軽さはあちらが上ですが、個人的にいくつか気になるところがありました。
+はてなブログ（無料版）
+
+勝手に意図しない広告が入る
+デザインの自由度が低く、独自ドメインを使うには有料プラン（はてなブログPro）が必要
+
+Google Blogger
+
+完全無料で独自ドメインも使えるが、全体的にテンプレートのデザインが古め
+細かいカスタマイズをしようとするとXMLの編集が必要で地味に難しい
+
+Cloudflare Pages × Hugo なら…
+
+広告は一切なし
+完全な独自ドメイン運用
+モダンで美しいデザイン（Hugoのテーマが豊富）
+ページ遷移が一瞬（爆速）
+
+無料ブログの「痒いところに手が届かない感」を、すべてクリアしてくれるのがこの構成でした。
+
+【失敗談】実は一度、Astro &#43; microCMSで挫折しました…
+ここまで絶賛してきたCloudflare Pagesですが、実は誰にでも手放しでおすすめできるわけではありません。
+最大のデメリットは、WordPressのようなブラウザ上の管理画面がなく、ある程度のWeb知識が必要になることです。
+実際、私は最初に「今一番モダンでオシャレだから」という理由で、Astro &#43; microCMS &#43; Cloudflare Pages という構成で作り始めました。
+……が、見事に撃沈しました。
+
+見た目をカスタマイズしようとCSSやTypeScriptを弄る
+API連携やnpmの依存関係（package-lock.json）でエラー連発
+SSR（サーバーサイドレンダリング）と静的生成の挙動が混ざり合って混沌化
+
+結果、カスタマイズの途中でサイトが完全に崩壊。
+知識不足も相まって修復不能になり、「自分には凝ったヘッドレスCMSやフレームワークを維持するのは無理だ…」と痛感しました。
+
+辿り着いた「Hugo」という安全地帯
+その失敗を経て乗り換えたのが Hugo（ヒューゴ） でした。これが大正解。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/220260728_cloudflareblogtsukuttemita/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/220260728_cloudflareblogtsukuttemita/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta name="google-adsense-account" content="ca-pub-8084137292522704">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8084137292522704"
+     crossorigin="anonymous"></script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="naruブログ (Alt + H)">naruブログ</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/privacy/" title="Privacy">
+                    <span>Privacy</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">ホーム</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      WordPress以外ならこれ！Cloudflare Pages＋Hugoでつくる最安＆爆速の個人ブログ構成
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-07-28 05:30:00 +0900 JST'>2026年7月28日</span>&nbsp;·&nbsp;<span>1 分</span>
+
+</div>
+  </header> <details class="toc"  open>
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目次</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#wordpress%e3%81%ae%e6%af%8e%e6%9c%88%e3%81%ae%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e4%bb%a3%e3%81%8c%e5%9c%b0%e5%91%b3%e3%81%ab%e9%87%8d%e3%81%8b%e3%81%a3%e3%81%9f" aria-label="WordPressの「毎月のサーバー代」が地味に重かった">WordPressの「毎月のサーバー代」が地味に重かった</a></li>
+            <li>
+                <a href="#%e3%83%89%e3%83%a1%e3%82%a4%e3%83%b3%e4%bb%a3%e3%81%99%e3%82%89%e6%9c%80%e5%ae%89%e3%81%a7%e6%b8%88%e3%82%80cloudflare-registrar%e3%81%ae%e5%ad%98%e5%9c%a8" aria-label="ドメイン代すら最安で済む「Cloudflare Registrar」の存在">ドメイン代すら最安で済む「Cloudflare Registrar」の存在</a></li>
+            <li>
+                <a href="#%e4%bb%96%e3%81%ae%e7%84%a1%e6%96%99%e3%83%96%e3%83%ad%e3%82%b0%e3%81%af%e3%81%a6%e3%81%aablogger%e3%81%98%e3%82%83%e3%83%80%e3%83%a1%e3%81%aa%e3%81%ae" aria-label="他の無料ブログ（はてな・Blogger）じゃダメなの？">他の無料ブログ（はてな・Blogger）じゃダメなの？</a><ul>
+                    
+            <li>
+                <a href="#%e3%81%af%e3%81%a6%e3%81%aa%e3%83%96%e3%83%ad%e3%82%b0%e7%84%a1%e6%96%99%e7%89%88" aria-label="はてなブログ（無料版）">はてなブログ（無料版）</a></li>
+            <li>
+                <a href="#google-blogger" aria-label="Google Blogger">Google Blogger</a></li>
+            <li>
+                <a href="#cloudflare-pages--hugo-%e3%81%aa%e3%82%89" aria-label="Cloudflare Pages × Hugo なら…">Cloudflare Pages × Hugo なら…</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%a4%b1%e6%95%97%e8%ab%87%e5%ae%9f%e3%81%af%e4%b8%80%e5%ba%a6astro--microcms%e3%81%a7%e6%8c%ab%e6%8a%98%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" aria-label="【失敗談】実は一度、Astro &#43; microCMSで挫折しました…">【失敗談】実は一度、Astro + microCMSで挫折しました…</a></li>
+            <li>
+                <a href="#%e8%be%bf%e3%82%8a%e7%9d%80%e3%81%84%e3%81%9fhugo%e3%81%a8%e3%81%84%e3%81%86%e5%ae%89%e5%85%a8%e5%9c%b0%e5%b8%af" aria-label="辿り着いた「Hugo」という安全地帯">辿り着いた「Hugo」という安全地帯</a></li>
+            <li>
+                <a href="#%e3%81%be%e3%81%a8%e3%82%81%e7%8b%ac%e8%87%aa%e3%83%89%e3%83%a1%e3%82%a4%e3%83%b3%e3%81%95%e3%81%88%e3%81%82%e3%82%8c%e3%81%b0%e3%83%96%e3%83%ad%e3%82%b0%e3%81%af%e8%82%b2%e3%81%a4" aria-label="まとめ：独自ドメインさえあれば、ブログは育つ">まとめ：独自ドメインさえあれば、ブログは育つ</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>ブログを始めようと思ったとき、パッと思い浮かぶのはWordPressやはてなブログ、Bloggerあたりでしょうか。</p>
+<p>でも実は今、<strong>「Cloudflare Pages × Hugo」</strong> という構成が、個人ブログの選択肢として非常に優秀です。</p>
+<p>結論から言うと、<strong>独自ドメイン代（年額数百円〜千円程度）さえ払えば、サーバー代完全無料で爆速の個人ブログが持てます。</strong></p>
+<p>しかも、ドメイン取得先として優秀なCloudflareならドメイン代も<strong>原価（利益乗せなし）の最安値</strong>。</p>
+<p>「ブログは書きたいけれど、毎月の固定費は払いたくない…」という人に全力でおすすめしたいこの構成について、実際にWordPressや他のツールと比較しながらまとめてみました。</p>
+<hr>
+<h2 id="wordpressの毎月のサーバー代が地味に重かった">WordPressの「毎月のサーバー代」が地味に重かった<a hidden class="anchor" aria-hidden="true" href="#wordpressの毎月のサーバー代が地味に重かった">#</a></h2>
+<p>以前はWordPressでブログを書いていたのですが、運用していてずっと気になっていたのが<strong>毎月発生するサーバー代</strong>でした。</p>
+<ul>
+<li><strong>レンタルサーバーやVPS代：</strong> 月600円〜1,000円（年間約1万円〜）</li>
+<li><strong>独自ドメイン代：</strong> 年1,500円〜3,000円</li>
+</ul>
+<p>収益化ができているブログなら良いのですが、趣味の記録やちょっとした技術ブログだと「毎月1,000円近く払い続けるのは地味に痛いな…」と感じてしまうんですよね。</p>
+<p>「もっと維持費を抑えて、気楽に続けられる方法はないか？」と探して辿り着いたのが今回の構成でした。</p>
+<hr>
+<h2 id="ドメイン代すら最安で済むcloudflare-registrarの存在">ドメイン代すら最安で済む「Cloudflare Registrar」の存在<a hidden class="anchor" aria-hidden="true" href="#ドメイン代すら最安で済むcloudflare-registrarの存在">#</a></h2>
+<p>今回ホスティング先として選んだCloudflareですが、実はドメインの購入も行えます。</p>
+<p>これが一般的なドメイン会社と違って「手数料ゼロ・原価販売」なんです。</p>
+<blockquote>
+<p><strong>よくあるドメイン会社の罠</strong></p>
+<ul>
+<li>初年度だけ1円で、2年目からの更新料が跳ね上がる</li>
+<li>謎のオプションでいつの間にか料金が加算されている</li>
+</ul>
+</blockquote>
+<p>Cloudflareはずっと原価のまま更新できるので、長く運用すればするほど差が出ます。</p>
+<p><strong>「原価の最安ドメイン」×「無料のCloudflare Pages」＝「ほぼ完全無料のブログ」</strong></p>
+<p>この組み合わせが成立した瞬間、個人ブログをやってみようという気になりました。</p>
+<hr>
+<h2 id="他の無料ブログはてなbloggerじゃダメなの">他の無料ブログ（はてな・Blogger）じゃダメなの？<a hidden class="anchor" aria-hidden="true" href="#他の無料ブログはてなbloggerじゃダメなの">#</a></h2>
+<p>「無料なら、はてなブログやBloggerでいいのでは？」と思うかもしれません。もちろん手軽さはあちらが上ですが、個人的にいくつか気になるところがありました。</p>
+<h3 id="はてなブログ無料版">はてなブログ（無料版）<a hidden class="anchor" aria-hidden="true" href="#はてなブログ無料版">#</a></h3>
+<ul>
+<li>勝手に意図しない広告が入る</li>
+<li>デザインの自由度が低く、独自ドメインを使うには有料プラン（はてなブログPro）が必要</li>
+</ul>
+<h3 id="google-blogger">Google Blogger<a hidden class="anchor" aria-hidden="true" href="#google-blogger">#</a></h3>
+<ul>
+<li>完全無料で独自ドメインも使えるが、全体的にテンプレートのデザインが古め</li>
+<li>細かいカスタマイズをしようとするとXMLの編集が必要で地味に難しい</li>
+</ul>
+<h3 id="cloudflare-pages--hugo-なら">Cloudflare Pages × Hugo なら…<a hidden class="anchor" aria-hidden="true" href="#cloudflare-pages--hugo-なら">#</a></h3>
+<ul>
+<li><strong>広告は一切なし</strong></li>
+<li><strong>完全な独自ドメイン運用</strong></li>
+<li>モダンで美しいデザイン（Hugoのテーマが豊富）</li>
+<li>ページ遷移が一瞬（爆速）</li>
+</ul>
+<p>無料ブログの「痒いところに手が届かない感」を、すべてクリアしてくれるのがこの構成でした。</p>
+<hr>
+<h2 id="失敗談実は一度astro--microcmsで挫折しました">【失敗談】実は一度、Astro + microCMSで挫折しました…<a hidden class="anchor" aria-hidden="true" href="#失敗談実は一度astro--microcmsで挫折しました">#</a></h2>
+<p>ここまで絶賛してきたCloudflare Pagesですが、実は<strong>誰にでも手放しでおすすめできるわけではありません。</strong></p>
+<p>最大のデメリットは、<strong>WordPressのようなブラウザ上の管理画面がなく、ある程度のWeb知識が必要になること</strong>です。</p>
+<p>実際、私は最初に「今一番モダンでオシャレだから」という理由で、<strong>Astro + microCMS + Cloudflare Pages</strong> という構成で作り始めました。</p>
+<p>……が、見事に撃沈しました。</p>
+<ul>
+<li>見た目をカスタマイズしようとCSSやTypeScriptを弄る</li>
+<li>API連携やnpmの依存関係（<code>package-lock.json</code>）でエラー連発</li>
+<li>SSR（サーバーサイドレンダリング）と静的生成の挙動が混ざり合って混沌化</li>
+</ul>
+<p>結果、<strong>カスタマイズの途中でサイトが完全に崩壊。</strong></p>
+<p>知識不足も相まって修復不能になり、「自分には凝ったヘッドレスCMSやフレームワークを維持するのは無理だ…」と痛感しました。</p>
+<hr>
+<h2 id="辿り着いたhugoという安全地帯">辿り着いた「Hugo」という安全地帯<a hidden class="anchor" aria-hidden="true" href="#辿り着いたhugoという安全地帯">#</a></h2>
+<p>その失敗を経て乗り換えたのが <strong>Hugo（ヒューゴ）</strong> でした。これが大正解。</p>
+<ul>
+<li><strong>簡単な構成で動くため、Node.jsやnpmの依存関係エラーに悩まされない</strong></li>
+<li>PaperModなどの完成されたテーマを適用するだけで、一瞬でおしゃれになる</li>
+<li>記事は手元のMarkdownファイルで書いてGitHubにpushするだけ</li>
+</ul>
+<p>Astroで沼にハマっていたのが嘘のように、あっけなくブログが完成しました。</p>
+<p>「ビルドが速い」「絶対に崩れにくい」「壊れてもローカルのMarkdownさえあれば一瞬で復元できる」という安心感は、個人ブログにとって最強の強みです。</p>
+<hr>
+<h2 id="まとめ独自ドメインさえあればブログは育つ">まとめ：独自ドメインさえあれば、ブログは育つ<a hidden class="anchor" aria-hidden="true" href="#まとめ独自ドメインさえあればブログは育つ">#</a></h2>
+<p>Cloudflare Pages × Hugo の流れは本当にシンプルです。</p>
+<ol>
+<li>Cloudflareで独自ドメインを登録</li>
+<li>Hugoで記事を書いてGitHubにpush</li>
+<li>Cloudflare Pagesが自動でビルド＆SSL化（HTTPS）して公開</li>
+</ol>
+<p>サーバー契約も、証明書の手動更新も、月額費用も要りません。</p>
+<p><strong>「独自ドメインの年間数百円〜千円程度だけで、自分だけの爆速ブログが持てる」</strong></p>
+<p>ある程度のIT知識のある人にとっては、間違いなく最高峰のブログ環境だと思います。これからブログを自作してみたい方の参考になれば幸いです！</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/20260729_awazugrandhoteltomattemita/">
+    <span class="title">« 前へ</span>
+    <span>【子連れ宿泊記】3連休に粟津グランドホテルへ！家族4人で47,856円は高い？部屋・キッズスペース・食事の本音レビュー</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/trailing-stop-ea-code/">
+    <span class="title">次へ »</span>
+    <span>トレーリングストップを設定した自作EAのコードを紹介</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">naruブログ</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'コピー';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'コピーされました!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'コピー';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

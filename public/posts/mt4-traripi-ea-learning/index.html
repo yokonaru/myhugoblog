@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>初めてのMT4 トラリピ風EAを目指した学習方法 | naruブログ</title>
+<meta name="keywords" content="">
+<meta name="description" content="トラリピ風EAを作るために私がMT4（MQL4）を学習した方法をまとめました。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/mt4-traripi-ea-learning/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/mt4-traripi-ea-learning/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta name="google-adsense-account" content="ca-pub-8084137292522704">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8084137292522704"
+     crossorigin="anonymous"></script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="naruブログ (Alt + H)">naruブログ</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/privacy/" title="Privacy">
+                    <span>Privacy</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">ホーム</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      初めてのMT4 トラリピ風EAを目指した学習方法
+    </h1>
+    <div class="post-description">
+      トラリピ風EAを作るために私がMT4（MQL4）を学習した方法をまとめました。
+    </div>
+    <div class="post-meta">
+
+<span title='2019-03-24 00:52:00 +0900 JST'>2019年3月24日</span>&nbsp;·&nbsp;<span>1 分</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h2 id="はじめに">はじめに<a hidden class="anchor" aria-hidden="true" href="#はじめに">#</a></h2>
+<p>マネースクエア社が提供する <strong>トラリピのような自動売買</strong> は非常に魅力的ですが、</p>
+<ul>
+<li>スプレッドが高い</li>
+<li>裁量トレードで寝付けなくなる</li>
+<li>自作EAに興味がある</li>
+</ul>
+<p>という理由で <strong>MT4（MQL4）で自動売買を作りたい</strong> と思う方は多いと思います。</p>
+<p>しかし、MT4でEAを作る学習方法は普段の生活に馴染みがなく、<br>
+「どこから手をつければいいの？」<br>
+と迷う方も多いはず。</p>
+<p>そこで今回は、<strong>私がトラリピ風EAを作るために実際に行った MT4（MQL4）の学習方法</strong> を紹介します。</p>
+<hr>
+<h2 id="購入した書籍">購入した書籍<a hidden class="anchor" aria-hidden="true" href="#購入した書籍">#</a></h2>
+<p>初心者向けとして評価が高かった次の2冊を購入しました。</p>
+<ol>
+<li><strong>FXメタトレーダー入門</strong></li>
+<li><strong>FXメタトレーダー実践プログラミング</strong></li>
+</ol>
+<hr>
+<h2 id="fxメタトレーダー入門の使い方">FXメタトレーダー入門の使い方<a hidden class="anchor" aria-hidden="true" href="#fxメタトレーダー入門の使い方">#</a></h2>
+<p>この本では MT4 の基本操作を学びました。</p>
+<p>ただし、ネット上の情報である程度理解していたこともあり、<br>
+正直この本はあまり使いませんでした。</p>
+<ul>
+<li>MT4を完全にゼロから学びたい人向け</li>
+<li>ネット情報でも十分学べる内容が多い</li>
+</ul>
+<p>という印象でした。</p>
+<hr>
+<h2 id="fxメタトレーダー実践プログラミングの使い方">FXメタトレーダー実践プログラミングの使い方<a hidden class="anchor" aria-hidden="true" href="#fxメタトレーダー実践プログラミングの使い方">#</a></h2>
+<p>私がメインで使ったのはこちら。</p>
+<p>ただし <strong>1から全部読むことはしませんでした。</strong></p>
+<p>理由は、私の目標が<br>
+<strong>「トラリピ風の自動売買EAを作ること」</strong><br>
+だったためです。</p>
+<p>この本に掲載されているサンプルEA<br>
+<strong>「RIDOrder2.mq4」</strong><br>
+を加工する形で学習しました。</p>
+<hr>
+<h2 id="ridorder2mq4-がトラリピ風で便利だった理由">RIDOrder2.mq4 がトラリピ風で便利だった理由<a hidden class="anchor" aria-hidden="true" href="#ridorder2mq4-がトラリピ風で便利だった理由">#</a></h2>
+<p>RIDOrder2.mq4 は「複数注文に対応したリピートIFD注文」と紹介されており、<br>
+トラリピと似た特徴があります。</p>
+<ul>
+<li><strong>複数の注文を一括発注できる</strong></li>
+<li><strong>リピート機能がある</strong></li>
+<li><strong>利益幅の指定ができる</strong></li>
+</ul>
+<p>しかし、トラリピと違う点もありました。</p>
+<ul>
+<li>逆指値注文に対応していない</li>
+<li>決済トレール機能がない</li>
+</ul>
+<p>そこで私は次の改造を行いました。</p>
+<h3 id="-逆指値注文に対応させる">✔ 逆指値注文に対応させる<a hidden class="anchor" aria-hidden="true" href="#-逆指値注文に対応させる">#</a></h3>
+<h3 id="-決済トレール機能を追加する">✔ 決済トレール機能を追加する<a hidden class="anchor" aria-hidden="true" href="#-決済トレール機能を追加する">#</a></h3>
+<p>決済トレール機能は本書に掲載されているサンプルを参考にして追加しました。</p>
+<hr>
+<h2 id="注意点重要">注意点（重要）<a hidden class="anchor" aria-hidden="true" href="#注意点重要">#</a></h2>
+<p>RIDOrder2.mq4 の中には <strong>My○○○</strong> と書かれたコードが多数あります。</p>
+<p>これは著者の豊嶋先生が作成した <strong>別ファイルのコードを読み込んで使っている</strong> ため、<br>
+逆指値対応などの改造を行う場合は、</p>
+<blockquote>
+<p><strong>My○○○ と書かれた部分をすべて書き換える必要がある</strong></p>
+</blockquote>
+<p>という点に注意が必要です。</p>
+<p>私は最初この仕組みに気づかず、<br>
+「なぜ思うように動かないのか？」<br>
+と悩み、逆指値対応に非常に時間がかかりました。</p>
+<p>正直、より初心者向けの<br>
+<strong>「iCustomで変幻自在のメタトレーダーEAをコピペで作る方法」</strong><br>
+を先に読んでおけばよかったと後悔しました。</p>
+<hr>
+<h2 id="まとめ">まとめ<a hidden class="anchor" aria-hidden="true" href="#まとめ">#</a></h2>
+<p>私が MT4 を学習した流れは次のとおりです。</p>
+<ol>
+<li>ネットサーフィンと「FXメタトレーダー入門」で基礎を学ぶ</li>
+<li>「FXメタトレーダー実践プログラミング」のサンプルEA<br>
+<strong>RIDOrder2.mq4 を改造してトラリピ風EAを作成</strong></li>
+<li>実際にコードを触りながら MQL4 を理解していく</li>
+</ol>
+<p>MT4を学習したいけれど、<br>
+「どこから始めればいいかわからない」<br>
+という方は、ぜひ参考にしてください。</p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/mt4-icustom-ea-review/">
+    <span class="title">« 前へ</span>
+    <span>「iCustomで変幻自在のメタトレーダーEAをコピペで作る方法」を読んでみた</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/fxnoswaptradenosippaidan/">
+    <span class="title">次へ »</span>
+    <span>FXのスワップ投資の失敗談と反省</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">naruブログ</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'コピー';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'コピーされました!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'コピー';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

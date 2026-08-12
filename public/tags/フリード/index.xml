@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>フリード on naruブログ</title>
+    <link>http://localhost:1313/tags/%E3%83%95%E3%83%AA%E3%83%BC%E3%83%89/</link>
+    <description>Recent content in フリード on naruブログ</description>
+    <generator>Hugo</generator>
+    <language>ja</language>
+    <lastBuildDate>Wed, 12 Aug 2026 00:39:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E3%83%95%E3%83%AA%E3%83%BC%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ホンダフリードAIREXにして本当によかった理由｜高速7時間の帰省で実感したこと</title>
+      <link>http://localhost:1313/posts/20260812_freedairex/</link>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/20260812_freedairex/</guid>
+      <description>フリードAIRではなくAIREXを選んだ理由。高速7時間の帰省で自動運転の恩恵を強く実感。リアクーラーが子どもにも大好評。</description>
+    </item>
+  </channel>
+</rss>

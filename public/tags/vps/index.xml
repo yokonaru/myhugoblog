@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>VPS on naruブログ</title>
+    <link>http://localhost:1313/tags/vps/</link>
+    <description>Recent content in VPS on naruブログ</description>
+    <generator>Hugo</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 05 Sep 2022 13:30:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MT4を安く24時間稼働させる方法はミニPCがおすすめ</title>
+      <link>http://localhost:1313/posts/mt4-mini-pc/</link>
+      <pubDate>Mon, 05 Sep 2022 13:30:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/mt4-mini-pc/</guid>
+      <description>MT4を24時間稼働させる最も安くて自由度の高い方法として、ミニPC運用を紹介します。VPSとのコスト比較や実際の電気代も掲載。</description>
+    </item>
+  </channel>
+</rss>

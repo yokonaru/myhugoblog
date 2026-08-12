@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>予備校レビュー on naruブログ</title>
+    <link>http://localhost:1313/tags/%E4%BA%88%E5%82%99%E6%A0%A1%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC/</link>
+    <description>Recent content in 予備校レビュー on naruブログ</description>
+    <generator>Hugo</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 09 Feb 2020 13:28:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E4%BA%88%E5%82%99%E6%A0%A1%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【レビュー】LEC公認会計士講座を受講して感じたこと</title>
+      <link>http://localhost:1313/posts/lec-kaikeishi-review/</link>
+      <pubDate>Sun, 09 Feb 2020 13:28:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/lec-kaikeishi-review/</guid>
+      <description>LECの公認会計士講座（短答速習中上級コース）を実際に受講して感じたことをまとめました。企業法・管理会計論・監査論・財務会計論の印象を正直にレビューしています。</description>
+    </item>
+  </channel>
+</rss>
